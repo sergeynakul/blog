@@ -1,5 +1,5 @@
-class Category < ApplicationRecord
-	has_many :posts
+class Post < ApplicationRecord
+  belongs_to :category
 
   VALID_NAME_REGEX = /\A[A-Z][a-z]+\s[a-z][a-z]+\.\z/i
   validates :name, presence: true, format: { 

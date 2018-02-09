@@ -12,13 +12,13 @@
 
 <p>
   <strong>File:</strong>
-  <%= @post.file %>
+  <%= link_to @post.file.file.identifier, @post.file.url if @post.file? %>
 </p>
 
 <p>
   <strong>Category:</strong>
-  <%= @post.category %>
+  <%= @post.category.name %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Edit', edit_category_post_path(@category) %> |
+<%= link_to 'Back', @category %>

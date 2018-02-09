@@ -27,9 +27,9 @@ class PostsController < ApplicationController
     @category = Category.find(params[:category_id])
     @post = @category.posts.build(post_params)
     if @post.save
-      redirect_to category_path(@category), notice: 'Post was successfully created.'
+      redirect_to category_post_path(category_id: @category.id, id: @post.id), notice: 'Post was successfully created.'
     else
-      render category_path(@category)
+      render template: 'categories/show'
     end
   #  respond_to do |format|
   #    if @post.save
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to category_post_path(category_id: @category.id, id: @post.id), notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -60,16 +60,19 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to category_path(@category), notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to category_path(@category)
+  #  @post.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to category_path(@category), notice: 'Post was successfully destroyed.' }
+  #    format.json { head :no_content }
+  #  end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @category = Category.find(params[:category_id])
+      @post = @category.posts.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,14 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<div class="category">
+	<p>
+	  <strong>Name:</strong>
+	  <%= @category.name %>
+	</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @category.description %>
-</p>
+	<p>
+	  <strong>Description:</strong>
+	  <%= @category.description %>
+	</p>
+
+	<div class="comments">
+		<%= render 'comments/list', parent: @category %>
+	</div>
+</div>
 
 <%= render 'posts/index' %>
 <%= render 'posts/new' %>

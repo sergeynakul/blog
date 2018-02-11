@@ -1,10 +1,9 @@
 class CommentsController < ApplicationController
 
 	def create
-    @parent = Category.find(params[:category_id]) if params[:category_id]
-    @parent ||= Post.find(params[:post_id])
-    @comment = @parent.comments.build(comment_params)
-    @comment.save
+    @parent = Post.find(params[:post_id]) if params[:post_id]
+    @parent ||= Category.find(params[:category_id])
+    @comment = @parent.comments.create(comment_params)
   end
 
   private

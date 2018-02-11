@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div class="posts" id="post-#{@post.id}">
+<div class="posts" id="post-<%= @post.id %>">
 	<p>
 	  <strong>Name:</strong>
 	  <%= @post.name %>
@@ -22,7 +22,7 @@
 	</p>
 
 	<div class="comments">
-		<%= render 'comments/list', parent: @post.category %>
+		<%= render 'comments/list', parent: @post %>
 	</div>
 </div>
 

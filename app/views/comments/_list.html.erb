@@ -1,8 +1,10 @@
 <h2>Comments</h2>
 <%= render parent.comments %>
 <h3>New Comment</h3>
-<%= form_for [parent, parent.comments.build], remote: true do |form| %>
 
+<% args = parent.is_a?(Post) ? [parent.category, parent, parent.comments.build] : [parent, parent.comments.build] %>
+
+<%= form_for args, remote: true do |form| %>
   <div class="field">
     <%= form.label :author %>
     <%= form.text_field :author %>
@@ -17,3 +19,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+

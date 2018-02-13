@@ -31,15 +31,6 @@ class PostsController < ApplicationController
     else
       render template: 'categories/show'
     end
-  #  respond_to do |format|
-  #    if @post.save
-  #      format.html { redirect_to @post, notice: 'Post was successfully created.' }
-  #      format.json { render :show, status: :created, location: @post }
-  #    else
-  #      format.html { render :new }
-  #      format.json { render json: @post.errors, status: :unprocessable_entity }
-  #    end
-  #  end
   end
 
   # PATCH/PUT /posts/1
@@ -60,12 +51,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-    redirect_to category_path(@category)
-  #  @post.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to category_path(@category), notice: 'Post was successfully destroyed.' }
-  #    format.json { head :no_content }
-  #  end
+    respond_to do |format|
+      format.html { redirect_to category_path(@category), notice: 'Post was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private

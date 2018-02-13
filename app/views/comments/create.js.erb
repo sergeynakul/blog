@@ -1,2 +1,8 @@
-var parentSelector = '<%= @parent.is_a?(Category) ? ".category" : "#post-#{@parent.id}" %>';
-$(parentSelector + ' .comments').html('<%= j render "comments/list", parent: @parent %>');
+<% if @comment.errors.any? %>
+	<% @comment.errors.full_messages.each do |message| %>
+		$('#new_comment').before('<p id="error_explanation"><%= j message %></p>');
+	<% end %>
+<% else %>
+	var parentSelector = '<%= @parent.is_a?(Category) ? ".category" : "#post-#{@parent.id}" %>';
+	$(parentSelector + ' .comments').html('<%= j render "comments/list", parent: @parent %>');
+<% end %>

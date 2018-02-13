@@ -1,5 +1,7 @@
 <h2>Comments</h2>
-<%= render parent.comments %>
+<div class="comment_list">
+  <%= render parent.comments %>
+</div>  
 <h3>New Comment</h3>
 
 <% args = parent.is_a?(Post) ? [parent.category, parent, parent.comments.build] : [parent, parent.comments.build] %>

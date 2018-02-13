@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :post do
-    name "MyString"
+    name "Test post."
     content "MyText"
     file "MyString"
-    category nil
+    category_id 1
   end
 end
